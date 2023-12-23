@@ -51,24 +51,29 @@ const ApplyFormPage = (props) => {
             if (result) toast.success("Applied Successfully");
                      
             
-            const message = {
-                data: {
-                  score: '850',
-                  time: '2:45'
-                },
-                token: token
-              };
-              
-              // Send a message to the device corresponding to the provided
-              // registration token.
-              getMessaging().send(message)
-                .then((response) => {
-                  // Response is a message ID string.
-                  console.log('Successfully sent message:', response);
-                })
-                .catch((error) => {
-                  console.log('Error sending message:', error);
-                });
+            try {
+                const message = {
+                    data: {
+                      score: '850',
+                      time: '2:45'
+                    },
+                    token: token
+                  };
+                  
+                  // Send a message to the device corresponding to the provided
+                  // registration token.
+                  getMessaging().send(message)
+                    .then((response) => {
+                      // Response is a message ID string.
+                      console.log('Successfully sent message:', response);
+                    })
+                    .catch((error) => {
+                      console.log('Error sending message:', error);
+                    });
+            } catch (error) {
+                console.log(error);
+            }
+
 
             // const message={
             //     data:{
