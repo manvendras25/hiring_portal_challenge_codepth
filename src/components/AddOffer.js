@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 import { useFirebase } from '../context/firebase';
 import Navbar from './Navbar';
 import { toast } from 'react-custom-alert';
 const AddOffer = () => {
 
+    const navigate=useNavigate();
     const firebase=useFirebase();
     const [offer, setOffer] = useState({ title: "", description: "", tag: "" ,location:"",salary:""})
 
@@ -14,7 +15,7 @@ const AddOffer = () => {
        await firebase.handleCreateNewListing(offer.title,offer.description,offer.tag,offer.location,offer.salary);
 
         setOffer({ title: "", description: "", tag: "" ,location:"",salary:""})
-
+         navigate('/')
         toast.success("Added successfully!");
     }
 

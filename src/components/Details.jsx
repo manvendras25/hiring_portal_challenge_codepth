@@ -12,17 +12,18 @@ const OfferDetailPage = () => {
     const navigate = useNavigate();
     const [data, setData] = useState(null)
 
-    const copyToClipboard = async () => {
-        try {
-          const element = document.querySelector(".user-select-all");
-          await navigator.clipboard.writeText(element.textContent);
-          console.log("Text copied to clipboard!");
-          toast.success("Job Link Copied");
-        } catch (error) {
-          console.error("Failed to copy :", error);
-          // Optional: Display an error message to the user
-        }
-      };
+    // const copyToClipboard = async () => {
+    //     try {
+    //       const element = document.querySelector(".user-select-all");
+    //       await navigator.clipboard.writeText(element.textContent);
+    //       console.log("Text copied to clipboard!");
+    //       toast.success("Job Link Copied");
+    //     } catch (error) {
+    //       console.error("Failed to copy :", error);
+    //       // Optional: Display an error message to the user
+    //     }
+    //   };
+    
     useEffect(() => {
 
         firebase.getOfferById(params.offerId).then(value => setData(value.data(),console.log(value.data())));
@@ -47,15 +48,15 @@ const OfferDetailPage = () => {
         <div class="container">
           <h1 class="display-3">{data.title}</h1>
           <p> {data.description}</p><div class="location"><p>
-    Location :
+    Location : {data.location}
 </p>
 
 <p>
-    Salary :
+    Salary : {data.salary} per annum.
 </p>
 </div>
 
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Apply now »</a></p>
+<button className="btn btn-outline-primary" onClick={handleClick}>Apply</button>
 
 
 
@@ -63,12 +64,12 @@ const OfferDetailPage = () => {
         </div>
       </div>
 
-            <div>{data.title}</div>
+            {/* <div>{data.title}</div>
             <div>{data.description}</div>
-            <div>Job link :<p className="user-select-all">/offer/apply/{params.offerId}</p>
-             <button className='btn-secondary'onClick={copyToClipboard}>Copy Job Link</button> 
-             </div> 
-            <button className="btn btn-outline-primary" onClick={handleClick}>Apply</button>
+            <div>Job link :<p className="user-select-all">/offer/apply/{params.offerId}</p> */}
+             {/* <button className='btn-secondary'onClick={copyToClipboard}>Copy Job Link</button>  */}
+             {/* </div> 
+            <button className="btn btn-outline-primary" onClick={handleClick}>Apply</button> */}
         </>
     )
 }
